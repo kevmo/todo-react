@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+
+
+</head>
+
+<body>
+
+<div id="newTodoContainer">
+ <input type="text"
+        id="newTodo"
+        placeholder="type new todo here"
+ />
+</div>
+
+<div id="todosContainer">
+    <ul id="todosList">
+
+    </ul>
+</div>
+
+
+<script>
+    // opts = {text, status}
+    function createNewTodoElement(opts){
+        var text = opts.text;
+        var elString = `<li><input type='checkbox' /><label>${text}</label></li>`;
+        var $el = $(elString);
+        return $el
+    }
+
+    // take text and append as list item
+    function addNewTodo(text) {
+        // create new to-do element
+        var $el = createNewTodoElement({text: text});
+
+        // grab list container
+        // append new element
+        $('#todosList').append($el);
+
+    }
+
+
+    $('#newTodo').on("keyup", function(e) {
+        if (e.keyCode === 13) {
+            var text = e.target.value;
+            addNewTodo(text)
+        };
+    })
+</script>
+
+</body>
+
+</html>
